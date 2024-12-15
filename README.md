@@ -21,7 +21,7 @@ The project consists of 3 main parts:
 ### 1. Theta Component Extraction via GED
 First, we extract the theta component using Generalized Eigendecomposition (GED):
 
-![Components Analysis](path/to/components.png)
+![Components Analysis](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/component_analysis.png)
 - Left: Power spectra showing clear theta peak in both component and filtered signals
 - Right: Channel spectrum demonstrating raw EEG frequency content
 - Bottom: GED eigenvalues showing component separation
@@ -29,7 +29,7 @@ First, we extract the theta component using Generalized Eigendecomposition (GED)
 ### 2. Theta Component Characteristics
 The extracted theta component shows clear oscillatory behavior:
 
-![Theta Time Series](path/to/theta_series.png)
+![Theta Time Series](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/theta_component_time_series.png)
 - Clean theta oscillations at ~6 Hz
 - Stable amplitude modulation
 - Clear cyclic pattern
@@ -37,14 +37,14 @@ The extracted theta component shows clear oscillatory behavior:
 ### 3. Trough Detection and Analysis
 We detect troughs in the theta signal for phase-based analysis:
 
-![Trough Analysis](path/to/troughs.png)
+![Trough Analysis](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/theta_components_spectral.png)
 - Top: Theta component with detected troughs (magenta dots)
 - Bottom: Data visualization around a specific trough showing spatial distribution of activity across channels
 
 ### 4. Frequency-Specific Modulation
 Analysis of cross-frequency coupling strength:
 
-![PAC Analysis](path/to/modulation.png)
+![PAC Analysis](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/frequency_specific_modulation.png)
 - Clear peak in gamma range (40-50 Hz)
 - Shows strongest coupling between theta phase and gamma amplitude
 - Demonstrates specific frequency bands involved in PAC
