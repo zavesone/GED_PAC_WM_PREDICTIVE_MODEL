@@ -12,9 +12,126 @@ The project consists of 3 main parts:
 2. Multivariate generalized eigendecomposition phase-amplitude coupling
 3. Working Memory Score Prediction using Neural Networks
 
+# 1. EEG Data Simulation for GED-PAC Analysis
+
+This repository contains Python code for simulating EEG data to study Phase-Amplitude Coupling (PAC) using Generalized Eigendecomposition (GED). The code is adapted from Mike X Cohen's MATLAB implementation.
+
+## Overview
+
+The simulation creates synthetic EEG data with known theta-gamma coupling patterns to test and validate PAC analysis methods. The simulated data includes:
+- A theta oscillation (~6 Hz)
+- Two different gamma oscillations:
+  1. A theta-locked gamma (40 Hz)
+  2. An independent gamma (50 Hz)
+- Realistic 1/f noise background
+
+## Components
+
+### 1. Dipole Configuration
+Three main dipoles are simulated:
+- Theta dipole (index 94)
+- Gamma/theta coupled dipole (index 109)
+- Independent gamma dipole (index 111)
+
+![Dipole Projections](images/dipole_projections.png)
+
+### 2. Signal Generation
+
+#### Theta Oscillation
+```python
+# Create nonstationary theta oscillation (6 Hz)
+theta_freq = 6
+ampl1 = 5 + 10 * filterFGx(np.random.randn(n_timepoints), srate, 1, 30)
+freqmod1 = signal.detrend(10 * filterFGx(np.random.randn(n_timepoints), srate, 1, 30))
+theta_wave = ampl1 * np.sin(2*np.pi * theta_freq * times + 2*np.pi/srate * np.cumsum(freqmod1))
+```
+
+#### Gamma Oscillations
+```python
+# Theta-locked gamma (40 Hz)
+gamma_freq = 40
+theta_phase = np.angle(hilbert(theta_wave))
+mod1 = 0.1 + 0.9 * (1 + np.real(np.exp(1j * theta_phase))) / 2
+gamma1_wave = mod1 * np.sin(2*np.pi * gamma_freq * times)
+
+# Independent gamma (50 Hz)
+ampl2 = 2 + 5 * filterFGx(np.random.randn(n_timepoints), srate, 1, 30)
+freqmod2 = signal.detrend(10 * filterFGx(np.random.randn(n_timepoints), srate, 1, 30))
+gamma2_wave = ampl2 * np.sin(2*np.pi * 50 * times + 2*np.pi/srate * np.cumsum(freqmod2))
+```
+
+### 3. Noise Generation
+- Creates correlated 1/f noise
+- Projects noise through leadfield matrix
+- Adds realistic spatial correlations
+
+![Noise Spectrum](images/noise_spectrum.png)
+
+## Signal Characteristics
+
+### Time Domain
+The simulated signals show clear:
+- Theta oscillations with varying amplitude
+- Gamma bursts that are phase-locked to theta
+- Independent gamma activity
+- Realistic background noise
+
+![Time Domain Signals](images/time_domain.png)
+
+### Frequency Domain
+The power spectrum shows:
+- Dominant theta peak around 6 Hz
+- Gamma peaks around 40 Hz and 50 Hz
+- 1/f background noise profile
+
+## Usage
+
+1. Load required libraries:
+```python
+import numpy as np
+from scipy import signal
+import matplotlib.pyplot as plt
+from scipy.io import loadmat
+```
+
+2. Load the empty EEG structure (containing channel locations and leadfield):
+```python
+eeg_data = loadmat('emptyEEG.mat')
+```
+
+3. Run the simulation:
+```python
+# Create and combine signals
+theta_wave = create_theta_oscillation(times, srate)
+gamma1_wave = create_locked_gamma(theta_wave, times)
+gamma2_wave = create_independent_gamma(times, srate)
+
+# Project to scalp through leadfield
+eeg_data = project_to_scalp(theta_wave, gamma1_wave, gamma2_wave, leadfield)
+```
+
+## Validation
+
+The simulation can be validated by:
+1. Checking the power spectrum for expected peaks
+2. Visualizing the time-domain coupling between theta and gamma
+3. Examining the spatial distributions in the topographic plots
+
+## Dependencies
+- NumPy
+- SciPy
+- Matplotlib
+- MNE-Python (for topographic plotting)
+
+## References
+- Original MATLAB implementation by Mike X Cohen
+- Cohen, M. X. (2017). Multivariate cross-frequency coupling via generalized eigendecomposition
+
+
+
 ### PAC Features Generation
 
-# Phase-Amplitude Coupling Analysis for Working Memory Prediction
+# 2 Phase-Amplitude Coupling Analysis for Working Memory Prediction via multivariate generalized eigendecomposition PAC
 
 ## Analysis Pipeline
 
