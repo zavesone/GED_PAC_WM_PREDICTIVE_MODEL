@@ -14,6 +14,79 @@ The project consists of 3 main parts:
 2. Multivariate generalized eigendecomposition phase-amplitude coupling
 3. Working Memory Score Prediction using Neural Networks
 
+
+[Previous content remains identical until after the Overview section]
+
+## Analysis Pipeline
+
+```mermaid
+graph TD
+    %% Data Simulation Nodes
+    A1[Create Theta Oscillation]
+    A2[Generate Gamma Oscillations]
+    A3[Add 1/f Noise]
+    A4[Project via Leadfield]
+    
+    %% PAC Analysis Nodes
+    B1[Theta Filtering]
+    B2[GED Component Extraction]
+    B3[Trough Detection]
+    B4[Cross-Frequency Analysis]
+    B5[Feature Extraction]
+    
+    %% Feature Nodes
+    C1[PAC Value]
+    C2[Gamma Frequency]
+    C3[Modulation Width]
+    C4[Total Modulation]
+    
+    %% Neural Network Nodes
+    D1[Input Layer]
+    D2[Hidden Layer]
+    D3[Output Layer]
+    E[Working Memory Score]
+    
+    %% Data Simulation Connections
+    A1-->|6 Hz|A2
+    A1-->A4
+    A2-->|40/50 Hz|A4
+    A3-->A4
+    
+    %% PAC Analysis Connections
+    A4-->|EEG Data|B1
+    B1-->B2
+    B2-->B3
+    B3-->B4
+    B4-->B5
+    
+    %% Feature Connections
+    B5-->C1
+    B5-->C2
+    B5-->C3
+    B5-->C4
+    
+    %% Neural Network Connections
+    C1 & C2 & C3 & C4-->D1
+    D1-->|ReLU|D2
+    D2-->|Dropout|D3
+    D3-->|Prediction|E
+    
+    %% Styling
+    style A1 fill:#2B2B2B,color:#fff
+    style A2 fill:#2B2B2B,color:#fff
+    style A3 fill:#2B2B2B,color:#fff
+    style A4 fill:#2B2B2B,color:#fff
+    style B1 fill:#2B2B2B,color:#fff
+    
+    %% Background colors for sections
+    %% Data Simulation background: #FFD600
+    %% PAC Analysis background: #FF6D00
+    %% Features background: #FFF9C4
+    %% Neural Network background: #FFE0B2
+```
+
+[Rest of the README content remains identical]
+
 # 1. EEG Data Simulation for GED-PAC Analysis
 
 ## Overview
