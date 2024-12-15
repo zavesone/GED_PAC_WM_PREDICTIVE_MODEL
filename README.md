@@ -14,9 +14,6 @@ The project consists of 3 main parts:
 2. Multivariate generalized eigendecomposition phase-amplitude coupling
 3. Working Memory Score Prediction using Neural Networks
 
-
-[Previous content remains identical until after the Overview section]
-
 ## Analysis Pipeline
 
 ```mermaid
@@ -85,7 +82,6 @@ graph TD
     %% Neural Network background: #FFE0B2
 ```
 
-[Rest of the README content remains identical]
 
 # 1. EEG Data Simulation for GED-PAC Analysis
 
@@ -266,6 +262,5 @@ Training Features:
 - Matplotlib
 
 ## References
-- Original MATLAB implementation by Mike X Cohen
 - Cohen, M. X. (2017). Multivariate cross-frequency coupling via generalized eigendecomposition
 
