@@ -1,9 +1,11 @@
+
+
 # GED_PAC_WM_PREDICTIVE_MODEL
-This is a demo of the predictive model of the working memory performance from the generalized eigen decomposition phase amplitude coupling values extracted from the  EEG data
+This is a demo of the predictive model of the working memory performance from the multivariate generalized eigendecomposition phase-amplitude coupling values extracted from the EEG data
 
 # PAC-Based Working Memory Prediction
 
-This project demonstrates the use of Phase-Amplitude Coupling (PAC) features to predict working memory performance using deep learning. It serves as a proof of concept for using neural oscillation characteristics to predict cognitive performance.
+This project demonstrates the use of Phase-Amplitude Coupling (PAC) features to predict working memory performance using linear predictive model. It serves as a proof of concept for using EEG PAC features to predict cognitive performance.
 
 ## Overview
 
@@ -13,10 +15,6 @@ The project consists of 3 main parts:
 3. Working Memory Score Prediction using Neural Networks
 
 # 1. EEG Data Simulation for GED-PAC Analysis
-
-# EEG Data Simulation for GED-PAC Analysis
-
-This repository contains Python code for simulating EEG data to study Phase-Amplitude Coupling (PAC) using Generalized Eigendecomposition (GED). The code is adapted from Mike X Cohen's MATLAB implementation.
 
 ## Overview
 
@@ -103,54 +101,7 @@ The power spectrum shows:
 - Gamma peaks around 40 Hz and 50 Hz
 - 1/f background noise profile
 
-## Usage
-
-1. Load required libraries:
-```python
-import numpy as np
-from scipy import signal
-import matplotlib.pyplot as plt
-from scipy.io import loadmat
-```
-
-2. Load the empty EEG structure (containing channel locations and leadfield):
-```python
-eeg_data = loadmat('emptyEEG.mat')
-```
-
-3. Run the simulation:
-```python
-# Create and combine signals
-theta_wave = create_theta_oscillation(times, srate)
-gamma1_wave = create_locked_gamma(theta_wave, times)
-gamma2_wave = create_independent_gamma(times, srate)
-
-# Project to scalp through leadfield
-eeg_data = project_to_scalp(theta_wave, gamma1_wave, gamma2_wave, leadfield)
-```
-
-## Validation
-
-The simulation can be validated by:
-1. Checking the power spectrum for expected peaks
-2. Visualizing the time-domain coupling between theta and gamma
-3. Examining the spatial distributions in the topographic plots
-
-## Dependencies
-- NumPy
-- SciPy
-- Matplotlib
-- MNE-Python (for topographic plotting)
-
-## References
-- Original MATLAB implementation by Mike X Cohen
-- Cohen, M. X. (2017). Multivariate cross-frequency coupling via generalized eigendecomposition
-
-
-
-### PAC Features Generation
-
-# 2 Phase-Amplitude Coupling Analysis for Working Memory Prediction via multivariate generalized eigendecomposition PAC
+# 2. Phase-Amplitude Coupling Analysis for Working Memory Prediction via multivariate generalized eigendecomposition PAC
 
 ## Analysis Pipeline
 
@@ -203,22 +154,13 @@ The extracted PAC features were used to predict working memory performance:
 2. Clear theta-gamma coupling in expected frequency ranges
 3. Proof of concept for PAC-based working memory prediction
 
-Would you like me to elaborate on any part of this documentation?
-
-We simulate EEG data with specific phase-amplitude coupling characteristics:
-- Theta oscillations (6 Hz)
-- Gamma bursts (40 Hz)
-- Realistic noise components
-
-[Placeholder: Image of PAC time series and frequency analysis]
+### PAC Features Generation
 
 Key features extracted:
 - PAC Value: ~2.39
 - Gamma Frequency: ~43.9 Hz
 - Modulation Width: ~28.7 Hz
 - Total Modulation: ~83.2
-
-[Placeholder: Image of theta-gamma coupling visualization]
 
 ### Deep Learning Model
 
@@ -241,43 +183,16 @@ Training Features:
 - Weight decay: 0.01
 - MSE loss function
 
-[Placeholder: Training loss curve]
-
-## Results
-
-Model Performance (2-fold CV):
-```
-=== Average CV Results ===
-MSE: mean ± std
-MAE: mean ± std
-R²: mean ± std
-Correlation: mean ± std
-```
-
-[Placeholder: Predictions vs Actuals scatter plot]
-
 ## Dependencies
 - PyTorch
 - NumPy
 - Pandas
 - scikit-learn
 - MNE-Python
+- SciPy
 - Matplotlib
 
-## Usage
-
-1. Generate PAC features:
-```python
-# Code snippet for PAC generation
-```
-
-2. Train the model:
-```python
-# Code snippet for model training
-```
-
-
 ## References
-[Add relevant papers and resources]
+- Original MATLAB implementation by Mike X Cohen
+- Cohen, M. X. (2017). Multivariate cross-frequency coupling via generalized eigendecomposition
 
-Would you like me to expand any section or add more technical details?
