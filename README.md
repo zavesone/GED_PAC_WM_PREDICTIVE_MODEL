@@ -14,6 +14,8 @@ The project consists of 3 main parts:
 
 # 1. EEG Data Simulation for GED-PAC Analysis
 
+# EEG Data Simulation for GED-PAC Analysis
+
 This repository contains Python code for simulating EEG data to study Phase-Amplitude Coupling (PAC) using Generalized Eigendecomposition (GED). The code is adapted from Mike X Cohen's MATLAB implementation.
 
 ## Overview
@@ -25,6 +27,25 @@ The simulation creates synthetic EEG data with known theta-gamma coupling patter
   2. An independent gamma (50 Hz)
 - Realistic 1/f noise background
 
+## Theta-Gamma Coupling Visualization
+
+![Theta-Gamma Coupling](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/thetagammacoupling.png)
+
+The figure above shows two key aspects of the simulation:
+1. **Top Panel**: Theta-locked gamma oscillations
+   - Blue line: Normalized theta oscillation (6 Hz)
+   - Red line: Normalized gamma oscillation (40 Hz)
+   - Notice how gamma amplitude increases during specific phases of theta
+   
+2. **Bottom Panel**: Non-locked gamma oscillations
+   - Green line: Independent gamma oscillation (50 Hz)
+   - Shows no systematic relationship with theta phase
+   - Demonstrates natural amplitude variations
+
+This visualization confirms that our simulation successfully creates:
+- Phase-amplitude coupling between theta and the first gamma oscillation
+- Independent gamma activity that serves as a control condition
+
 ## Components
 
 ### 1. Dipole Configuration
@@ -33,7 +54,7 @@ Three main dipoles are simulated:
 - Gamma/theta coupled dipole (index 109)
 - Independent gamma dipole (index 111)
 
-![Dipole Projections](images/dipole_projections.png)
+![Dipole Projections](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/Dipole%20Projections.png)
 
 ### 2. Signal Generation
 
@@ -65,7 +86,7 @@ gamma2_wave = ampl2 * np.sin(2*np.pi * 50 * times + 2*np.pi/srate * np.cumsum(fr
 - Projects noise through leadfield matrix
 - Adds realistic spatial correlations
 
-![Noise Spectrum](images/noise_spectrum.png)
+![Noise Spectrum](https://github.com/zavesone/GED_PAC_WM_PREDICTIVE_MODEL/blob/main/Noise%20Spectrum.png)
 
 ## Signal Characteristics
 
@@ -75,8 +96,6 @@ The simulated signals show clear:
 - Gamma bursts that are phase-locked to theta
 - Independent gamma activity
 - Realistic background noise
-
-![Time Domain Signals](images/time_domain.png)
 
 ### Frequency Domain
 The power spectrum shows:
